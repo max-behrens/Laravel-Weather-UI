@@ -9,7 +9,7 @@
 </head>
 <body>
     <div class="container">
-        <h1>User List</h1>
+        <h1>Users List</h1>
 
         <a href="{{ route('users.create') }}" class="button">Create New User</a> <!-- Button to create new user -->
 
