@@ -16,8 +16,5 @@ class ContactController extends Controller
                 'code' => 200
             ]
         );
-
-
-        
     }
 }
