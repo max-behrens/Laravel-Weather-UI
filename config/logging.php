@@ -127,6 +127,12 @@ return [
             'path' => storage_path('logs/laravel.log'),
         ],
 
+        'stack' => [
+        'driver' => 'stack',
+        'channels' => ['single', 'daily'],
+        'ignore_exceptions' => false,
+        ],
+
     ],
 
 ];

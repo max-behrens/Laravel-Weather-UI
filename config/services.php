@@ -35,4 +35,8 @@ return [
         ],
     ],
 
+    'dark_sky' => [
+        'key' => env('DARK_SKY_KEY'),
+    ],
+
 ];

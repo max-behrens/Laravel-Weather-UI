@@ -2,34 +2,34 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
-use App\Http\Controllers\MyController; // Update to your new controller name
 
-Route::get('/', function () {
-    return view('users.index');
-});
-
-
-Route::get('/dbconn', function(){
-    return view('dbconn');
-});
-
-// User routes
-Route::resource('users', UserController::class);
-
-// This is the route to display the user list
+// Route to display the user list
 Route::get('/users', [UserController::class, 'index'])->name('users.index');
 
-// The route to handle the insert action
-Route::post('/users/insert', [MyController::class, 'insert'])->name('users.insert'); // Ensure the method exists
+// Route to display the formatted user list for the Vue component
+Route::get('/users/formatted', [UserController::class, 'getFormattedUsers']);
 
-// Route to display the create user form
-Route::get('/users/create', [UserController::class, 'create'])->name('users.create');
+// Show user details page (web)
+Route::get('/users/{id}', [UserController::class, 'show'])->name('users.show');
 
-// Route to handle the form submission
+// Route to add a new user
+Route::get('/users/add', [UserController::class, 'create'])->name('users.add');
+
+// Route to handle the form submission for creating a user
 Route::post('/users', [UserController::class, 'store'])->name('users.store');
 
-// MyController routes
-Route::get('/hello', [MyController::class, 'hello']);
-Route::get('/edit', [MyController::class, 'edit']);
-Route::get('/read', [MyController::class, 'read']);
-Route::get('/delete', [MyController::class, 'delete']);
+// Route to edit an existing user
+Route::get('/users/edit/{id}', [UserController::class, 'edit'])->name('users.edit');
+
+// Route to update a user
+Route::put('/users/{id}', [UserController::class, 'update'])->name('users.update');
+// Route::post('/users/{id}', [UserController::class, 'show']);
+
+
+// Route to delete a user
+Route::delete('/users/{id}', [UserController::class, 'destroy'])->name('users.destroy');
+
+// Optional: Catch-all route for Vue router
+Route::get('/{any}', function () {
+    return view('users.index');
+})->where('any', '.*');
